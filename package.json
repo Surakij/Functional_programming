@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Surakij/Functional_programming/issues"
   },
-  "homepage": "https://github.com/Surakij/Functional_programming#readme"
+  "homepage": "https://github.com/Surakij/Functional_programming#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
