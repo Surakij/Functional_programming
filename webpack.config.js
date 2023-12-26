@@ -30,4 +30,9 @@ module.exports = {
       template: "index.html",
     }),
   ],
+  devServer: {
+    compress: true,
+    port: 9000,
+    watchFiles: ["*.html"],
+  },
 };
