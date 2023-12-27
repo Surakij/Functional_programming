@@ -1,0 +1,1 @@
+{"version":3,"file":"main.css","mappings":"AAAA,GACE,aACF","sources":["webpack://functional_programming/./src/css/style.css"],"sourcesContent":["h1 {\n  color: chocolate;\n}\n"],"names":[],"sourceRoot":""}

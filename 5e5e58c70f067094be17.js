@@ -1,0 +1,1 @@
+import{sum}from"./sum";import"./css/style.css";var h1=document.body.querySelector("h1");h1.innerText=sum(5,6);
