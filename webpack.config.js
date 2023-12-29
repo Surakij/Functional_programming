@@ -13,6 +13,9 @@ module.exports = (env) => ({
       arrowFunction: false,
     },
   },
+  resolve: {
+    extensions: [".js"],
+  },
   devtool: env.production ? "source-map" : "eval-source-map",
   mode: env.production ? "production" : "development",
   module: {
@@ -51,6 +54,7 @@ module.exports = (env) => ({
     minimizer: [`...`, new CssMinimizerPlugin()],
   },
   devServer: {
+    allowedHosts: "all",
     compress: true,
     port: 9000,
     watchFiles: ["*.html"],
