@@ -1,10 +1,9 @@
 name: Add codesandbox link
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-  pull_request_target:
-    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - main
 
 jobs:
   codesandbox-comment:
@@ -14,11 +13,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Add PR comment
-        uses: mshick/add-pr-comment@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create CodeSandbox link
+        id: create-link
+        run: |
+          echo "::set-output name=codesandbox-link::https://githubbox.com/${{ github.repository }}/tree/${{ github.ref }}"
+
+      - name: Add comment with CodeSandbox link
+        uses: actions/github-script@v4
         with:
-          message: |
-            You can check this code at CodeSandbox with the link
-            https://githubbox.com/${{ github.repository }}/tree/${{ github.head_ref }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `You can check this code at CodeSandbox with the link\n${{ steps.create-link.outputs.codesandbox-link }}`
+            })
