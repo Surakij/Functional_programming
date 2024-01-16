@@ -1,6 +1,6 @@
 name: Add codesandbox link
 
-on: [push, pull_request]
+on: [push]
 jobs:
   codesandbox-comment:
     name: Add codesandbox link comment
