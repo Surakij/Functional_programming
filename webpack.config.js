@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = (env) => ({
-  entry: "./src/index.js",
+  entry: "./src/index.ts",
   output: {
     path: resolve(__dirname, "dist"),
     filename: "bundle.js",
@@ -14,20 +15,17 @@ module.exports = (env) => ({
     },
   },
   resolve: {
-    extensions: [".js"],
+    extensions: [".ts", ".js"],
   },
   devtool: env.production ? "source-map" : "eval-source-map",
   mode: env.production ? "production" : "development",
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.ts$/,
         exclude: /(node_modules)/,
         use: {
           loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env"],
-          },
         },
       },
       {
@@ -45,9 +43,7 @@ module.exports = (env) => ({
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "index.html",
-    }),
+    new HtmlWebpackPlugin({ template: "index.html" }),
     new MiniCssExtractPlugin(),
   ],
   optimization: {
