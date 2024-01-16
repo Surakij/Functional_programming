@@ -1,9 +1,8 @@
 name: Add codesandbox link
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   codesandbox-comment:
@@ -16,7 +15,7 @@ jobs:
       - name: Create CodeSandbox link
         id: create-link
         run: |
-          echo "::set-output name=codesandbox-link::https://githubbox.com/${{ github.repository }}/tree/${{ github.ref }}"
+          echo "::set-output name=codesandbox-link::https://githubbox.com/${{ github.repository }}/tree/${{ github.head_ref }}"
 
       - name: Add comment with CodeSandbox link
         uses: actions/github-script@v4
